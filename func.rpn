@@ -13,3 +13,13 @@ h function def
 h "x x * y y * +" x decimal y decimal func2 =
 3 4 h
 // 5 x h
+
+newline
+rect_volume function def
+rect_volume "x y * z *" x decimal y decimal z decimal func3 =
+1 2 3 rect_volume
+
+newline
+cube_volume function def
+cube_volume "x x x rect_volume" x decimal func1 =
+2 cube_volume
