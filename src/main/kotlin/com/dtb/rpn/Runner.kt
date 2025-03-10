@@ -6,29 +6,32 @@ import java.util.*
 
 object Runner {
 	fun run(lines: Iterable<String>) {
-		lines.forEach {
-			println(run(it))
-		}
+		lines
+			.filter { it.isNotEmpty() }
+			.map { run(it) }
+			.forEach { println(it ?: "") }
 	}
 	fun run(line: String): Variable? {
 		val stack = Parser.parse(line)
 //		println("[STACK] $stack")
+//		println("[VARS]  ${Variable.names}")
+
+		if (stack.empty())
+			return null
 
 		val variable = stack.pop()
 		if (variable !is Function)
-			throw IllegalArgumentException()
+			return variable
 
 		return run(stack, variable)
 	}
 	private fun run(stack: Stack<Variable>, func: Function): Variable? {
-//		println(func)
-
 		var args = Array<Variable?>(func.numArgs()) { null }
 		for (i in args.indices) {
 			val arg = stack.pop()
-			if (arg is Function)
-				return run(stack, arg)
-			args[i] = arg
+			args[i] =
+				if (arg is Function) run(stack, arg)
+				else arg
 		}
 		args = args.reversedArray()
 
@@ -39,8 +42,10 @@ object Runner {
 			out
 		}
 
-		if (!parameterMatch)
+		if (func.parameters().isNotEmpty() && !parameterMatch)
 			throw IllegalArgumentException("${args.contentToString()} don't match any parameter list of $func")
+
+//		println("[STACK] $stack")
 		return func(args = args.map{ it!! }.toTypedArray())
 	}
 }

@@ -15,6 +15,8 @@ class AssignmentFunction : Function {
 
 	override fun invoke(vararg args: Variable): Variable {
 		assert(args[0] is StringVariable)
+//		println("${args[0].stringify()} = ${args[1]}")
+
 		Variable.names[(args[0] as StringVariable).str] = args[1]
 		return args[1]
 	}

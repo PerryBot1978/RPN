@@ -7,4 +7,5 @@ interface Function : Variable {
 	fun parameters(): Array<Array<Class<*>>>
 
 	operator fun invoke(vararg args: Variable): Variable?
+	override fun stringify(): String = this.javaClass.name
 }

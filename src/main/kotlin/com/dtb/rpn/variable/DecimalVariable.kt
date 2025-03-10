@@ -40,7 +40,6 @@ class DecimalVariable(private var value: BigDecimal) : Variable {
 		this.value /= other.value
 	}
 
-	override fun toString(): String {
-		return "DecimalVariable($value)"
-	}
+	override fun stringify(): String = value.toString()
+	override fun toString():  String = "DecimalVariable($value)"
 }

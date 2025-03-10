@@ -7,6 +7,8 @@ import com.dtb.rpn.function.builtins.math.MultiplyFunction
 import com.dtb.rpn.function.builtins.math.PlusFunction
 
 interface Variable {
+	fun stringify(): String
+
 	companion object {
 		val names = HashMap<String, Variable>()
 
@@ -17,6 +19,7 @@ interface Variable {
 			names["/"] = DivFunction()
 
 			names["="] = AssignmentFunction()
+			names["newline"] = NewLineFunction()
 		}
 	}
 }

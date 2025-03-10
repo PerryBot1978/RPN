@@ -21,9 +21,14 @@ object Parser {
 	fun parse(line: String): Stack<Variable> {
 		val stack  = Stack<String>()
 		var buffer = StringBuffer()
+		var inQuotes = false
 
 		line.forEachIndexed { _, char ->
-			if (char == ' ') {
+			if (char == '"') {
+				inQuotes = !inQuotes
+			} else if (inQuotes) {
+				buffer.append(char)
+			} else if (char == ' ') {
 				stack.push(buffer.toString())
 				buffer = StringBuffer()
 			} else {
@@ -33,9 +38,7 @@ object Parser {
 		stack.push(buffer.toString())
 
 		val out = Stack<Variable>()
-		stack.toList().forEach {
-			out.push(tokenize(it))
-		}
+		stack.toList().forEach { out.push(tokenize(it)) }
 		return out
 	}
 }
