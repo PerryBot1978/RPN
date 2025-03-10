@@ -8,6 +8,9 @@ import java.util.*
 object Parser {
 	private fun tokenize(str: String): Variable {
 //		println("[TOKEN] $str")
+
+		if (Variable.types.contains(str))
+			return Variable.types[str]!!
 		if (Variable.names.contains(str))
 			return Variable.names[str]!!
 

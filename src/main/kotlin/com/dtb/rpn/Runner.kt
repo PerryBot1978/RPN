@@ -9,7 +9,10 @@ object Runner {
 		lines
 			.filter { it.isNotEmpty() }
 			.map { run(it) }
-			.forEach { println(it ?: "") }
+			.forEach {
+				println(it ?: "")
+				System.out.flush()
+			}
 	}
 	fun run(line: String): Variable? {
 		val stack = Parser.parse(line)

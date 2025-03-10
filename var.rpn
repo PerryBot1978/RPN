@@ -1,3 +1,14 @@
+num decimal def
+
 num 5 =
 num 2 +
 num 3 -
+newline
+
+str string def
+str "hello" =
+str
+newline
+
+str "silly world" =
+str
