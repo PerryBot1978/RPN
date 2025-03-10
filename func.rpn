@@ -1,0 +1,15 @@
+f function def
+f "3 2 +" func0 =
+f
+
+newline
+g function def
+g "3 x -" x decimal func1 =
+5 g
+1 g
+
+newline
+h function def
+h "x x * y y * +" x decimal y decimal func2 =
+3 4 h
+// 5 x h

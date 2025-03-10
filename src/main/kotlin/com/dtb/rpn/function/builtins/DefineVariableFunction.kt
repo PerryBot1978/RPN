@@ -14,7 +14,7 @@ class DefineVariableFunction : Function {
 		)
 	}
 
-	override fun invoke(vararg args: Variable): Variable? {
+	override fun invoke(vararg args: Variable): Variable {
 		assert(args[1] is Type)
 
 		val name = if (args[0] is StringVariable) {

@@ -1,6 +1,5 @@
 package com.dtb.rpn.function.builtins
 
-import com.dtb.rpn.Main
 import com.dtb.rpn.function.Function
 import com.dtb.rpn.variable.Variable
 

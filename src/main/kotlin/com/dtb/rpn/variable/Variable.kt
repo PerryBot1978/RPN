@@ -1,10 +1,7 @@
 package com.dtb.rpn.variable
 
 import com.dtb.rpn.function.builtins.*
-import com.dtb.rpn.function.builtins.math.DivFunction
-import com.dtb.rpn.function.builtins.math.MinusFunction
-import com.dtb.rpn.function.builtins.math.MultiplyFunction
-import com.dtb.rpn.function.builtins.math.PlusFunction
+import com.dtb.rpn.function.builtins.math.*
 
 interface Variable {
 	fun stringify(): String
@@ -36,6 +33,7 @@ interface Variable {
 			names["-"] = MinusFunction()
 			names["*"] = MultiplyFunction()
 			names["/"] = DivFunction()
+			names["^"] = PowFunction()
 
 			names["="] = AssignmentFunction()
 			names["def"] = DefineVariableFunction()
@@ -46,6 +44,7 @@ interface Variable {
 			types["decimal"]  = Type(DecimalVariable::class.java)
 			types["string"]   = Type(StringVariable ::class.java)
 			types["function"] = Type(CustomFunction ::class.java)
+			types["type"]     = Type(Type           ::class.java)
 		}
 	}
 }

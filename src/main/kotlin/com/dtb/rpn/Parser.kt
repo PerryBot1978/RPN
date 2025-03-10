@@ -1,5 +1,6 @@
 package com.dtb.rpn
 
+import com.dtb.rpn.function.builtins.CustomFunctionGenerator
 import com.dtb.rpn.variable.DecimalVariable
 import com.dtb.rpn.variable.StringVariable
 import com.dtb.rpn.variable.Variable
@@ -13,6 +14,13 @@ object Parser {
 			return Variable.types[str]!!
 		if (Variable.names.contains(str))
 			return Variable.names[str]!!
+		if (str.matches("func\\d+".toRegex())) {
+			val number = Integer.parseInt(str.substring(4))
+			val cfg = CustomFunctionGenerator(number)
+
+			Variable.names[str] = cfg
+			return cfg
+		}
 
 		val decimal = DecimalVariable.of(str)
 		if (decimal != null)
@@ -26,11 +34,13 @@ object Parser {
 		var buffer = StringBuffer()
 		var inQuotes = false
 
-		line.forEachIndexed { _, char ->
+		for ((i, char) in line.withIndex()) {
 			if (char == '"') {
 				inQuotes = !inQuotes
 			} else if (inQuotes) {
 				buffer.append(char)
+			} else if (line[i] == '/'  && i < line.length - 1 && line[i + 1] == '/') {
+				break
 			} else if (char == ' ') {
 				stack.push(buffer.toString())
 				buffer = StringBuffer()
