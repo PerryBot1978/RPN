@@ -1,11 +1,16 @@
 package com.dtb.rpn.variable
 
 import com.dtb.rpn.function.builtins.*
+import com.dtb.rpn.function.builtins.io.PrintFunction
+import com.dtb.rpn.function.builtins.io.PrintVarsFunction
+import com.dtb.rpn.function.builtins.io.ReadFileFunction
+import com.dtb.rpn.function.builtins.io.SilentFunction
 import com.dtb.rpn.function.builtins.math.*
 
 interface Variable {
 	fun stringify(): String
-	fun type(): Class<*> { return this.javaClass }
+	fun type(): Type
+
 	fun findName(): String? {
 		val out = names
 			.entries
@@ -13,10 +18,16 @@ interface Variable {
 			.first ?: return null
 		return out.key
 	}
+	fun findType(): String? {
+		val out = Type.types
+			.map { Pair(it.key, it.value.type()) }
+			.filter { it.second == this.type() }
+			.first ?: return null
+		return out.first
+	}
 
 	companion object {
 		val names = HashMap<String, Variable>()
-		val types = HashMap<String, Type>()
 
 		fun assign(name: String, variable: Variable) {
 //			println("Variables.assign($name, $variable) : Old = ${names[name]}")
@@ -37,14 +48,12 @@ interface Variable {
 
 			names["="] = AssignmentFunction()
 			names["def"] = DefineVariableFunction()
-			names["newline"] = NewLineFunction()
-		}
+			names["read_file"] = ReadFileFunction()
 
-		init {
-			types["decimal"]  = Type(DecimalVariable::class.java)
-			types["string"]   = Type(StringVariable ::class.java)
-			types["function"] = Type(CustomFunction ::class.java)
-			types["type"]     = Type(Type           ::class.java)
+			names["print"]      = PrintFunction()
+			names["println"]    = PrintFunction("\n")
+			names["print_vars"] = PrintVarsFunction()
+			names["silent"]     = SilentFunction()
 		}
 	}
 }

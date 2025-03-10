@@ -1,25 +1,35 @@
-f function def
+Number Type def
+Number Decimal =
+newline
+
+Integer Type def
+Integer Decimal =
+newline
+
+f Function def
 f "3 2 +" func0 =
 f
+newline
 
 newline
-g function def
-g "3 x -" x decimal func1 =
+g Function def
+g "3 x -" x Number func1 =
 5 g
 1 g
+newline
 
 newline
-h function def
-h "x x * y y * +" x decimal y decimal func2 =
+h Function def
+h "x x * y y * +" x Number y Number func2 =
 3 4 h
 // 5 x h
 
 newline
-rect_volume function def
-rect_volume "x y * z *" x decimal y decimal z decimal func3 =
+rect_volume Function def
+rect_volume "x y * z *" x Number y Number z Number func3 =
 1 2 3 rect_volume
 
 newline
-cube_volume function def
-cube_volume "x x x rect_volume" x decimal func1 =
+cube_volume Function def
+cube_volume "x x x rect_volume" x Number func1 =
 2 cube_volume

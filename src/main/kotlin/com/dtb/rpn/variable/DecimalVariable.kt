@@ -44,6 +44,7 @@ class DecimalVariable(private var value: BigDecimal) : Variable {
 		return DecimalVariable(this.value.pow(other.value.toInt()))
 	}
 
+	override fun type(): Type = Type.types["Decimal"]!!
 	override fun stringify(): String = value.toString()
 	override fun toString():  String = "DecimalVariable($value)"
 }

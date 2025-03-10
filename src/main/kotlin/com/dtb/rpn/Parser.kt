@@ -3,6 +3,7 @@ package com.dtb.rpn
 import com.dtb.rpn.function.builtins.CustomFunctionGenerator
 import com.dtb.rpn.variable.DecimalVariable
 import com.dtb.rpn.variable.StringVariable
+import com.dtb.rpn.variable.Type
 import com.dtb.rpn.variable.Variable
 import java.util.*
 
@@ -10,8 +11,8 @@ object Parser {
 	private fun tokenize(str: String): Variable {
 //		println("[TOKEN] $str")
 
-		if (Variable.types.contains(str))
-			return Variable.types[str]!!
+		if (Type.types.contains(str))
+			return Type.types[str]!!
 		if (Variable.names.contains(str))
 			return Variable.names[str]!!
 		if (str.matches("func\\d+".toRegex())) {
@@ -33,12 +34,25 @@ object Parser {
 		val stack  = Stack<String>()
 		var buffer = StringBuffer()
 		var inQuotes = false
+		var skip = false
 
 		for ((i, char) in line.withIndex()) {
-			if (char == '"') {
+			if (skip) {
+				skip = false
+			} else if (char == '"') {
 				inQuotes = !inQuotes
 			} else if (inQuotes) {
-				buffer.append(char)
+				if (i == line.length - 1) {
+					buffer.append(char)
+				} else if (line[i] == '\\' && line[i + 1] == '\\') {
+					buffer.append('\"')
+					skip = true
+				} else if (line[i] == '\\' && line[i + 1] == '\"') {
+					buffer.append('\"')
+					skip = true
+				} else {
+					buffer.append(char)
+				}
 			} else if (line[i] == '/'  && i < line.length - 1 && line[i + 1] == '/') {
 				break
 			} else if (char == ' ') {

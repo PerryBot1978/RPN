@@ -1,0 +1,2 @@
+newline Function def silent
+newline "\"\" println silent" func0 = silent

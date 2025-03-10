@@ -8,9 +8,9 @@ import com.dtb.rpn.variable.Variable
 class DefineVariableFunction : Function {
 	override fun numArgs(): Int = 2
 
-	override fun parameters(): Array<Array<Class<*>>> {
+	override fun parameters(): Array<Array<Type>> {
 		return arrayOf(
-			arrayOf(Variable::class.java, Type::class.java)
+			arrayOf(Type.types["String"]!!, Type.types["Type"]!!)
 		)
 	}
 

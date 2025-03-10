@@ -8,15 +8,15 @@ import com.dtb.rpn.variable.Variable
 class CustomFunctionGenerator(private val parameterCount: Int) : Function {
 	override fun numArgs(): Int = parameterCount * 2 + 1
 
-	override fun parameters(): Array<Array<Class<*>>> {
+	override fun parameters(): Array<Array<Type>> {
 		return arrayOf(
 			Array(parameterCount * 2 + 1) {
 				if (it == 0)
-					StringVariable::class.java
+					Type.types["String"]!!
 				else if (it % 2 == 1)
-					StringVariable::class.java
+					Type.types["String"]!!
 				else
-					Type::class.java
+					Type.types["Type"]!!
 			}
 		)
 	}
@@ -27,8 +27,8 @@ class CustomFunctionGenerator(private val parameterCount: Int) : Function {
 		val arguments = args.toMutableList()
 		val code = arguments.removeAt(0).stringify()
 
-		val parameters = Array<Pair<String, Class<*>>?>(parameterCount) {
-			val pair = Pair(args[2 * it + 1].stringify(), args[2 * it + 2].type())
+		val parameters = Array<Pair<String, Type>?>(parameterCount) {
+			val pair = Pair(args[2 * it + 1].stringify(), args[2 * it + 2] as Type)
 //			println("[PAIR] $pair")
 			pair
 		}.filterNotNull().toTypedArray()
