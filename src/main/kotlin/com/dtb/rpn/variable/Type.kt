@@ -1,6 +1,6 @@
 package com.dtb.rpn.variable
 
-import com.dtb.rpn.function.builtins.CustomFunction
+import com.dtb.rpn.function.builtins.function.CustomFunction
 
 class Type(private val type: Class<*>) : Variable {
 	companion object {

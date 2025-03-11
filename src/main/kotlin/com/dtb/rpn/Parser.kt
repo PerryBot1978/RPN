@@ -1,6 +1,6 @@
 package com.dtb.rpn
 
-import com.dtb.rpn.function.builtins.CustomFunctionGenerator
+import com.dtb.rpn.function.builtins.function.CustomFunctionGenerator
 import com.dtb.rpn.variable.DecimalVariable
 import com.dtb.rpn.variable.StringVariable
 import com.dtb.rpn.variable.Type
@@ -11,16 +11,22 @@ object Parser {
 	private fun tokenize(str: String): Variable {
 //		println("[TOKEN] $str")
 
-		if (Type.types.contains(str))
+		if (Type.types.contains(str)) {
 			return Type.types[str]!!
-		if (Variable.names.contains(str))
+		} else if (Variable.names.contains(str)) {
 			return Variable.names[str]!!
-		if (str.matches("func\\d+".toRegex())) {
+		} else if (str.matches("func\\d+".toRegex())) {
 			val number = Integer.parseInt(str.substring(4))
 			val cfg = CustomFunctionGenerator(number)
 
 			Variable.names[str] = cfg
 			return cfg
+		} else if (str.matches("struct\\d+".toRegex())) {
+//			val number = Integer.parseInt(str.substring(4))
+//			val cfg = StructGenerator(number)
+//
+//			Type.types[str] = cfg
+//			return cfg
 		}
 
 		val decimal = DecimalVariable.of(str)

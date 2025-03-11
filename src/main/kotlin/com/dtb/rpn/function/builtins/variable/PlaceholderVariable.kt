@@ -1,4 +1,4 @@
-package com.dtb.rpn.function.builtins
+package com.dtb.rpn.function.builtins.variable
 
 import com.dtb.rpn.variable.Type
 import com.dtb.rpn.variable.Variable

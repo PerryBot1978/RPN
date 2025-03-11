@@ -1,4 +1,4 @@
-package com.dtb.rpn.function.builtins
+package com.dtb.rpn.function.builtins.function
 
 import com.dtb.rpn.Runner
 import com.dtb.rpn.function.Function

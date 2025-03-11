@@ -1,12 +1,13 @@
 package com.dtb.rpn.variable
 
-import com.dtb.rpn.function.builtins.*
 import com.dtb.rpn.function.builtins.io.PrintFunction
 import com.dtb.rpn.function.builtins.io.PrintVarsFunction
 import com.dtb.rpn.function.builtins.io.ReadFileFunction
 import com.dtb.rpn.function.builtins.io.SilentFunction
 import com.dtb.rpn.function.builtins.math.*
-import com.google.gson.Gson
+import com.dtb.rpn.function.builtins.variable.AssignmentFunction
+import com.dtb.rpn.function.builtins.variable.DefineVariableFunction
+import com.dtb.rpn.function.builtins.variable.PlaceholderVariable
 
 interface Variable {
 	fun stringify(): String
