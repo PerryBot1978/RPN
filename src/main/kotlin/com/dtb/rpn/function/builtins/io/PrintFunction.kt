@@ -15,7 +15,7 @@ class PrintFunction(private val suffix: String = "") : Function {
 	}
 
 	override fun invoke(vararg args: Variable): Variable {
-		println(args[0].stringify() + suffix)
+		print(args[0].stringify() + suffix)
 		System.out.flush()
 		return args[0]
 	}

@@ -1,5 +1,6 @@
 package com.dtb.rpn.variable
 
+import ch.obermuhlner.math.big.kotlin.bigdecimal.pow
 import java.lang.NumberFormatException
 import java.math.BigDecimal
 
@@ -41,7 +42,7 @@ class DecimalVariable(private var value: BigDecimal) : Variable {
 	}
 
 	infix fun pow(other: DecimalVariable): DecimalVariable {
-		return DecimalVariable(this.value.pow(other.value.toInt()))
+		return DecimalVariable(this.value pow other.value)
 	}
 
 	override fun type(): Type = Type.types["Decimal"]!!

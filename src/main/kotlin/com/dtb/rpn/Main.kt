@@ -11,7 +11,7 @@ object Main {
 
 	@JvmStatic
 	fun main(args: Array<String>) {
-		Runner.run(File("lib/std.rpn").readLines())
+		Runner.run(File("lib/io.rpn").readLines())
 		System.out.flush()
 
 		val myScan = Scanner(System.`in`)

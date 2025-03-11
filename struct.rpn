@@ -1,0 +1,6 @@
+vec2 x decimal y decimal struct2 =
+length "vec x_vec2 2 ^ vec y_vec2 2 ^ + 0.5 ^" vec func1 =
+
+vec vec2 def
+vec 3 4 new_vec2 =
+vec length

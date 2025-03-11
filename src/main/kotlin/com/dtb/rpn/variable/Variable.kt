@@ -6,6 +6,7 @@ import com.dtb.rpn.function.builtins.io.PrintVarsFunction
 import com.dtb.rpn.function.builtins.io.ReadFileFunction
 import com.dtb.rpn.function.builtins.io.SilentFunction
 import com.dtb.rpn.function.builtins.math.*
+import com.google.gson.Gson
 
 interface Variable {
 	fun stringify(): String
