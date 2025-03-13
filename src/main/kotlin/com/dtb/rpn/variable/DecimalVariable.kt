@@ -6,27 +6,18 @@ import java.math.BigDecimal
 
 class DecimalVariable(private var value: BigDecimal) : Variable {
 	companion object {
-		fun of(str: String): DecimalVariable? {
-			return try {
-				DecimalVariable(BigDecimal(str))
-			} catch (e: NumberFormatException) {
-				null
-			}
+		fun of(str: String): DecimalVariable? = try {
+			DecimalVariable(BigDecimal(str))
+		} catch (e: NumberFormatException) {
+			null
 		}
 	}
 
-	operator fun plus(other: DecimalVariable): DecimalVariable {
-		return DecimalVariable(this.value + other.value)
-	}
-	operator fun minus(other: DecimalVariable): DecimalVariable {
-		return DecimalVariable(this.value - other.value)
-	}
-	operator fun times(other: DecimalVariable): DecimalVariable {
-		return DecimalVariable(this.value * other.value)
-	}
-	operator fun div(other: DecimalVariable): DecimalVariable {
-		return DecimalVariable(this.value / other.value)
-	}
+	operator fun plus (other: DecimalVariable): DecimalVariable = DecimalVariable(this.value + other.value)
+	operator fun minus(other: DecimalVariable): DecimalVariable = DecimalVariable(this.value - other.value)
+	operator fun times(other: DecimalVariable): DecimalVariable = DecimalVariable(this.value * other.value)
+	operator fun div  (other: DecimalVariable): DecimalVariable = DecimalVariable(this.value / other.value)
+	infix    fun pow  (other: DecimalVariable): DecimalVariable = DecimalVariable(this.value pow other.value)
 
 	operator fun plusAssign(other: DecimalVariable) {
 		this.value += other.value
@@ -41,11 +32,8 @@ class DecimalVariable(private var value: BigDecimal) : Variable {
 		this.value /= other.value
 	}
 
-	infix fun pow(other: DecimalVariable): DecimalVariable {
-		return DecimalVariable(this.value pow other.value)
-	}
 
 	override fun type(): Type = Type.types["Decimal"]!!
 	override fun stringify(): String = value.toString()
-	override fun toString():  String = "DecimalVariable($value)"
+	override fun toString():  String = "Decimal($value)"
 }

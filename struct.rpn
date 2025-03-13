@@ -1,11 +1,33 @@
-x decimal y decimal vec2 struct2
-length "vec x_vec2 2 ^ vec y_vec2 2 ^ + 0.5 ^" vec func1 =
+x Decimal y Decimal Vector2 struct2
+
+length Function def
+length "vec get_Vector2_x 2 ^ vec get_Vector2_y 2 ^ + 0.5 ^" vec Vector2 func1 =
 newline
 
-vec vec2 def
-vec 3 4 new_vec2 =
+vec Vector2 def
+vec 3 4 new_Vector2 =
 vec length
 newline
 
-vec 1 2 new_vec2 =
+vec 1 2 new_Vector2 =
 vec length
+newline
+
+addVector2 Function def
+addVector2 "vec1 get_Vector2_x vec2 get_Vector2_x + vec1 get_Vector2_y vec2 get_Vector2_y + new_Vector2" vec1 Vector2 vec2 Vector2 func2 =
+newline
+
+mulVector2 Function def
+mulVector2 "vec get_Vector2_x dec * vec get_Vector2_y dec * new_Vector2" vec Vector2 dec Decimal func2 =
+newline
+
+position Vector2 velocity Vector2 Point2 struct2
+newline
+
+simulate Function def
+simulate "point point get_Point2_velocity dt mulVector2 point get_Point2_position addVector2 set_Point2_position" point Point2 dt Decimal func2 =
+newline
+
+Empty struct0
+test Empty def
+test new_Empty =

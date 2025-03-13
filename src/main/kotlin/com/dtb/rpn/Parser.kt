@@ -1,6 +1,7 @@
 package com.dtb.rpn
 
 import com.dtb.rpn.function.builtins.function.CustomFunctionGenerator
+import com.dtb.rpn.function.builtins.struct.StructGenerator
 import com.dtb.rpn.variable.DecimalVariable
 import com.dtb.rpn.variable.StringVariable
 import com.dtb.rpn.variable.Type
@@ -22,11 +23,11 @@ object Parser {
 			Variable.names[str] = cfg
 			return cfg
 		} else if (str.matches("struct\\d+".toRegex())) {
-//			val number = Integer.parseInt(str.substring(4))
-//			val cfg = StructGenerator(number)
-//
-//			Type.types[str] = cfg
-//			return cfg
+			val number = Integer.parseInt(str.substring(6))
+			val sg = StructGenerator(number)
+
+			Variable.names[str] = sg
+			return sg
 		}
 
 		val decimal = DecimalVariable.of(str)

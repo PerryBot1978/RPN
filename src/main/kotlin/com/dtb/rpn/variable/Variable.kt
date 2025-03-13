@@ -14,11 +14,15 @@ interface Variable {
 	fun type(): Type
 
 	fun findName(): String? {
-		val out = names
-			.entries
-			.filter { it.value == this }
-			.first ?: return null
-		return out.key
+		return try {
+			val out = names
+				.entries
+				.filter { it.value == this }
+				.first ?: return null
+			out.key
+		} catch (e: NoSuchElementException) {
+			null
+		}
 	}
 	fun findType(): String? {
 		val out = Type.types

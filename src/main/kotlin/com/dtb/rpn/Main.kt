@@ -20,12 +20,12 @@ object Main {
 	@JvmStatic
 	fun main(args: Array<String>) {
 		File("lib").list()!!.forEach {
-			Runner.run(File(it).readLines())
+			Runner.run(File("lib/$it").readLines())
 		}
 		System.out.flush()
 
 		val myScan = Scanner(System.`in`)
-		while (true)
+//		while (true)
 			runUserFile(myScan)
 	}
 }

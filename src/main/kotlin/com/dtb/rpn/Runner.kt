@@ -7,13 +7,12 @@ import java.util.*
 
 object Runner {
 	fun run(lines: Iterable<String>) {
-		var i = 0
-		lines
-			.forEach() {
+		var i = 1
+		lines.forEach() {
 				if (it.isNotEmpty()) {
 					val out = run(it)
 					if (out !is NoneVariable)
-						println("${i}: $out")
+						println("\t${i}: $out")
 					System.out.flush()
 				}
 				i++
@@ -47,10 +46,14 @@ object Runner {
 			var out = true
 			for (i in it.indices) {
 //				println("${it[i]} == ${args[i]!!.type()}")
-				out = out && it[i] == args[i]!!.type()
+				out = out && it[i].equals(args[i]!!.type())
 			}
 			out
 		}
+
+//		println(parameterMatch)
+//		if (!parameterMatch)
+//			println(args.contentToString())
 
 //		if (func.parameters().isNotEmpty() && !parameterMatch)
 //			throw IllegalArgumentException("${args.contentToString()} don't match any of ${func.parameters().contentDeepToString()}")

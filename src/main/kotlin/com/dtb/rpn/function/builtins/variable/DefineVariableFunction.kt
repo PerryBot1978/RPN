@@ -23,6 +23,7 @@ class DefineVariableFunction : Function {
 			args[0].findName()!!
 		}
 
+//		println(args.contentToString())
 		Variable.assign(name, PlaceholderVariable(name, args[1] as Type))
 		return args[1]
 	}

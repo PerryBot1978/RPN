@@ -5,5 +5,5 @@ class StringVariable(val str: String) : Variable {
 
 	override fun type(): Type = Type.types["String"]!!
 	override fun stringify(): String = str
-	override fun toString():  String = "StringVariable($str)"
+	override fun toString():  String = "String($str)"
 }
