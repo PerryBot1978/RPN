@@ -1,2 +1,5 @@
+println Function def silent
+println "str \n + print" str String func1 = silent
+
 newline Function def silent
 newline "\"\" println silent" func0 = silent

@@ -10,6 +10,7 @@ open class Type(private val name: String) : Variable {
 			types["Function"] = Type("Function")
 			types["Type"]     = Type("Type")
 			types["None"]     = Type("None")
+			types["Any"]      = Type("Any")
 		}
 	}
 

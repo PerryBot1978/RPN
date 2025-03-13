@@ -57,6 +57,9 @@ object Parser {
 				} else if (line[i] == '\\' && line[i + 1] == '\"') {
 					buffer.append('\"')
 					skip = true
+				} else if (line[i] == '\\' && line[i + 1] == 'n') {
+					buffer.append('\n')
+					skip = true
 				} else {
 					buffer.append(char)
 				}

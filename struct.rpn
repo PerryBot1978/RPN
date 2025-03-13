@@ -21,13 +21,26 @@ mulVector2 Function def
 mulVector2 "vec get_Vector2_x dec * vec get_Vector2_y dec * new_Vector2" vec Vector2 dec Decimal func2 =
 newline
 
-position Vector2 velocity Vector2 Point2 struct2
+position Vector2 velocity Vector2 Body2 struct2
 newline
 
 simulate Function def
-simulate "point point get_Point2_velocity dt mulVector2 point get_Point2_position addVector2 set_Point2_position" point Point2 dt Decimal func2 =
+simulate "point point get_Body2_velocity dt mulVector2 point get_Body2_position addVector2 set_Body2_position body rr" point Body2 dt Decimal func2 =
 newline
 
-Empty struct0
-test Empty def
-test new_Empty =
+pos Vector2 def
+pos 4 5 new_Vector2 =
+
+vel Vector2 def
+vel 1 2 new_Vector2 =
+
+newline
+body Body2 def
+body pos vel new_Body2 =
+
+newline
+body
+body 1 simulate
+body 2 simulate
+body 3 simulate
+body 4 simulate

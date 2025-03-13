@@ -1,5 +1,6 @@
 package com.dtb.rpn.variable
 
+import com.dtb.rpn.function.builtins.RunReturnFunction
 import com.dtb.rpn.function.builtins.io.PrintFunction
 import com.dtb.rpn.function.builtins.io.PrintVarsFunction
 import com.dtb.rpn.function.builtins.io.ReadFileFunction
@@ -55,9 +56,10 @@ interface Variable {
 			names["="] = AssignmentFunction()
 			names["def"] = DefineVariableFunction()
 			names["read_file"] = ReadFileFunction()
+			names["rr"] = RunReturnFunction()
 
 			names["print"]      = PrintFunction()
-			names["println"]    = PrintFunction("\n")
+//			names["println"]    = PrintFunction("\n")
 			names["print_vars"] = PrintVarsFunction()
 			names["silent"]     = SilentFunction()
 		}
